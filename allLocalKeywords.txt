@@ -1,0 +1,6 @@
+*** Settings ***
+Resource   common.txt
+Resource   TC-SM-02.txt
+Resource   TC-SM-03.txt
+Resource   TC-SM-04.txt
+Resource   TC-SM-05.txt

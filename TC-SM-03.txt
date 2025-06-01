@@ -1,0 +1,22 @@
+*** Settings ***
+Library    AppiumLibrary
+
+*** Keywords ***
+Remove Podcast
+    [Arguments]    ${podcast_index}
+    Click Element   xpath=//android.widget.GridView[@resource-id="de.danoeh.antennapod.debug:id/subscriptions_grid"]/android.widget.FrameLayout[${podcast_index}]
+
+    Wait Until Element Is Visible   xpath=//android.widget.ImageView[@content-desc="More options"]
+    Click Element   xpath=//android.widget.ImageView[@content-desc="More options"]
+
+    Wait Until Element Is Visible   xpath=//android.widget.TextView[@resource-id="de.danoeh.antennapod.debug:id/title" and @text="Remove podcast"]
+    Click Element   xpath=//android.widget.TextView[@resource-id="de.danoeh.antennapod.debug:id/title" and @text="Remove podcast"]
+
+    Wait Until Element Is Visible   xpath=//android.widget.Button[@resource-id="android:id/button1"]
+    Click Element   xpath=//android.widget.Button[@resource-id="android:id/button1"]
+
+    Wait Until Element Is Visible   xpath=(//android.widget.ImageView[@resource-id="de.danoeh.antennapod.debug:id/navigation_bar_item_icon_view"])[4]
+    Click Element   xpath=(//android.widget.ImageView[@resource-id="de.danoeh.antennapod.debug:id/navigation_bar_item_icon_view"])[4]
+
+Verify Subscription List After Delete
+    
