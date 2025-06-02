@@ -11,17 +11,16 @@ Test Rename Subscribed Podcast With Empty name
     [Setup]    Run Keywords     Open AntennaPod 
     ...               AND    Go To Add Podcast Page
     ...               AND    Subscribe Podcast    1
-    ...               AND    Rename Podcast    ${Empty}
+    Rename Podcast    ${Empty}
     Verify Renamed Title Should Be Correct    ${PODCAST_TITLE_1}
     [Teardown]    Teardown And Clear App
-    
 
 Test Rename Subscribed Podcast
     [Tags]    TC-SM-02-02
     [Setup]    Run Keywords    Open AntennaPod 
     ...               AND    Go To Add Podcast Page
     ...               AND    Subscribe Podcast    1
-    ...               AND    Rename Podcast    123
+    Rename Podcast    123
     Verify Renamed Title Should Be Correct    123
     [Teardown]    Teardown And Clear App
 
@@ -32,9 +31,10 @@ Test Delete The Only Podcast
     ...               AND   Subscribe Podcast    1
     ...               AND   Go Back To Previous Page
     ...               AND   Go To Subscription Page
-    ...               AND   Remove Podcast    1
-    ...               AND   Go To Subscription Page
+    Remove Podcast    1
+    Go To Subscription Page
     Verify Subscription List Is Empty
+    [Teardown]    Teardown And Clear App
 
 Test Delete Subscribed Podcast
     [Tags]    TC-SM-03-02
@@ -45,8 +45,8 @@ Test Delete Subscribed Podcast
     ...               AND   Subscribe Podcast    2
     ...               AND   Go Back To Previous Page
     ...               AND   Go To Subscription Page
-    ...               AND   Remove Podcast    1
-    Verify Subscription List After Delete
+    Remove Podcast    1
+    Verify Subscription List After Delete    ${PODCAST_TITLE_2}
     [Teardown]    Teardown And Clear App
 
 Test Sort Alphabetically Without Subscription
@@ -64,8 +64,8 @@ Test Sort Alphabetically With Only One Subscription
     ...               AND   Subscribe Podcast    1
     ...               AND   Go Back To Previous Page
     ...               AND   Go To Subscription Page
-    ...               AND   Sort Alphabetically
-    Verify Sorted Subscription List
+    Sort Alphabetically
+    Verify Sorted Subscription List    ${PODCAST_TITLE_1}
     [Teardown]    Teardown And Clear App
 
 Test Sort Alphabetically With Two Subscriptions
@@ -77,15 +77,15 @@ Test Sort Alphabetically With Two Subscriptions
     ...               AND   Subscribe Podcast    2
     ...               AND   Go Back To Previous Page
     ...               AND   Go To Subscription Page
-    ...               AND   Sort Alphabetically
-    Verify Sorted Subscription List
+    Sort Alphabetically
+    Verify Sorted Subscription List    ${PODCAST_TITLE_1}    ${PODCAST_TITLE_2}
     [Teardown]    Teardown And Clear App
 
 Test Kept Updated Filter Without Subscriptions
     [Tags]    TC-SM-05-01
     [Setup]    Run Keywords    Open AntennaPod
     ...               AND    Go To Subscription Page
-    ...               AND    Apply Kept Updated Filter
+    Apply Kept Updated Filter
     Verify Subscription List Is Empty
     [Teardown]    Teardown And Clear App
 
@@ -100,6 +100,6 @@ Test Kept Updated Filter With Multiple subscriptions
     ...               AND   Go Back To Previous Page
     ...               AND   Go Back To Previous Page
     ...               AND   Go To Subscription Page
-    ...               AND    Apply Kept Updated Filter
-    Verify Filtered Subscription List
+    Apply Kept Updated Filter
+    Verify Filtered Subscription List    ${PODCAST_TITLE_1}
     [Teardown]    Teardown And Clear App
